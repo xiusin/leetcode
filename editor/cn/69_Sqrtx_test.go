@@ -1,7 +1,6 @@
 package cn
 
 import (
-	"math"
 	"testing"
 )
 
@@ -30,10 +29,11 @@ import (
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func mySqrt(x int) int {
-	cur := math.Ceil(float64(x) / 2)	// 查找的起始点
-    for {
-
-	}
+	//cur := math.Ceil(float64(x) / 2)	// 查找的起始点
+    //for {
+	//
+	//}
+	return 0
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

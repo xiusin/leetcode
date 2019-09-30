@@ -53,8 +53,8 @@ import (
 func removeElement(nums []int, val int) int {
 	// 找到元素与不为该值的参数调换位置, 统计出现了几次
 	lenArr, counter := len(nums), 0
-	// 屏蔽直接重叠指针的情况
-	pLast := lenArr - 1 // 用来找第一个不为val的索引位置
+	// 尾指针
+	pLast := lenArr - 1
 	for pHead := 0; pHead < lenArr; pHead++ {
 		// 如果匹配到值, 就看尾指针都状态,直到为不相同的值再交换位置
 		if pLast >= pHead && nums[pHead] == val {
