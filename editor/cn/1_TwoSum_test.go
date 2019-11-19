@@ -23,7 +23,7 @@ import (
 //leetcode submit region begin(Prohibit modification and deletion)
 func twoSum(nums []int, target int) []int {
 	var res []int
-	// 记录数据所在的索引
+	// 记录数据所在的索引, 假设存在相同的值
 	ss, l := map[int][]int{}, len(nums)
 	if l > 0 {
 		hp, ep := 0, l-1
