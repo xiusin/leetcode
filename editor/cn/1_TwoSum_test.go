@@ -22,36 +22,54 @@ import (
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func twoSum(nums []int, target int) []int {
-	var res []int
-	// 记录数据所在的索引, 假设存在相同的值
-	ss, l := map[int][]int{}, len(nums)
-	if l > 0 {
-		hp, ep := 0, l-1
-		for idx, num := range nums {
-			ss[num] = append(ss[num], idx)
-		}
-		sort.Slice(nums, func(i, j int) bool {
-			return nums[i] < nums[j]
-		})
-		for hp < ep && nums[hp]+nums[ep] != target {
-			if nums[hp]+nums[ep] < target {
-				hp++
-			} else if nums[hp]+nums[ep] > target {
-				ep--
-			}
-		}
-		if nums[hp]+nums[ep] == target {
-			idx1 := ss[nums[hp]]
-			if nums[hp] != nums[ep] {
-				idx2 := ss[nums[ep]]
-				return append(res, idx1[0], idx2[0])
-			} else {
-				return append(res, idx1[0], idx1[1])
-			}
+	l := len(nums)
+	i, j := 0, l-1
+	sort.Slice(nums, func(i, j int) bool {
+		return i < j
+	})
+	for i < j {
+		if nums[i]+nums[j] < target {
+			i++
+		} else if nums[i]+nums[j] > target {
+			j--
+		} else {
+			break
 		}
 	}
-	return res
+	return []int{i, j}
 }
+
+// 最蠢的算法
+//func versionOne(nums []int, target int) int{
+//	var res []int
+	// 记录数据所在的索引, 假设存在相同的值
+	//ss, l := map[int][]int{}, len(nums)
+	//if l > 0 {
+	//	hp, ep := 0, l-1
+	//	for idx, num := range nums {
+	//		ss[num] = append(ss[num], idx)
+	//	}
+	//	sort.Slice(nums, func(i, j int) bool {
+	//		return nums[i] < nums[j]
+	//	})
+	//	for hp < ep && nums[hp]+nums[ep] != target {
+	//		if nums[hp]+nums[ep] < target {
+	//			hp++
+	//		} else if nums[hp]+nums[ep] > target {
+	//			ep--
+	//		}
+	//	}
+	//	if nums[hp]+nums[ep] == target {
+	//		idx1 := ss[nums[hp]]
+	//		if nums[hp] != nums[ep] {
+	//			idx2 := ss[nums[ep]]
+	//			return append(res, idx1[0], idx2[0])
+	//		} else {
+	//			return append(res, idx1[0], idx1[1])
+	//		}
+	//	}
+	//}
+//}
 
 //leetcode submit region end(Prohibit modification and deletion)
 func TestTwoSum(t *testing.T) {
