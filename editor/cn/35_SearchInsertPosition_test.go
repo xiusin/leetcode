@@ -36,28 +36,37 @@ import (
 
 //leetcode submit region begin(Prohibit modification and deletion)
 func searchInsert(nums []int, target int) int {
-	// 同理 双指针, 别瞎指挥解题
 	if lens := len(nums); lens > 0 {
+		// 定义左右指针
 		left, right := 0, lens-1
-		var mid int
+		var mid int	// 中间指针
 		for left <= right {
 			mid = (left + right) / 2 // 计算中间位置
 			if nums[mid] > target {
-				right = mid - 1 // 如果中间位置的值大于目标值就吧结束位置重置到中间位置前
+				right = mid - 1 // 如果中间位置的值大于目标值就吧结束位置重置到中间位置前 (缩小边界)
 			} else if nums[mid] < target {
 				left = mid + 1 // 如果中间位置的值小于目标值就把开始位置设置到中间位置
 			} else {
-				return mid
+				return mid // 找到值, 直接返回索引
 			}
 		}
-		return mid
+
+		// TODO 这里分析一下为什么返回left
+		// 按照for的退出条件 left <= right
+		// left  = 3   right = 3
+		// left  = 3   right = 2
+		// 上面两种情况
+		// 第一种情况: right > target 所以触发了mid - 1. 那么 left 应该 是小于target 所以可以直接
+
+
+		return left
 	}
-	return 0
+	return -1
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
 
 func TestSearchInsertPosition(t *testing.T) {
 	//fmt.Println(searchInsert([]int{1, 3, 5, 6}, 5) == 2)
-	fmt.Println(searchInsert([]int{1, 3, 5, 6}, 4) == 2)
+	fmt.Println(searchInsert([]int{1, 3, 5, 6}, 2), 2)
 }

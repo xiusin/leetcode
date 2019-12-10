@@ -26,19 +26,19 @@ import (
 func merge(nums1 []int, m int, nums2 []int, n int) {
 	var i, j = 0, 0
 	for i < m+n && j < n {
-		// 随着合并增多, 需要动态增加 i的边界. m里的值还没有完全检索完成
+		// 随着合并增多, 需要动态增加 i的边界. 因为m里的值还没有完全检索完成
 		if i < m + j && nums2[j] >= nums1[i]{
 			i++
-			continue
+		} else {
+			// 向后移动需要的元素. 逐渐剔除0
+			for ti := m + n - 1; ti > i; ti-- {
+				nums1[ti] = nums1[ti-1]
+			}
+			nums1[i] = nums2[j]
+			// 两个指针均后移. 指向新的值.
+			j++
+			i++
 		}
-		// 向后移动需要的元素. 逐渐剔除0
-		for ti := m + n - 1; ti > i; ti-- {
-			nums1[ti] = nums1[ti-1]
-		}
-		nums1[i] = nums2[j]
-		// 两个指针均后移. 指向新的值.
-		j++
-		i++
 	}
 }
 
