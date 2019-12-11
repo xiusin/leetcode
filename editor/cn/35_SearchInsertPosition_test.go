@@ -1,7 +1,6 @@
 package cn
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -39,7 +38,7 @@ func searchInsert(nums []int, target int) int {
 	if lens := len(nums); lens > 0 {
 		// 定义左右指针
 		left, right := 0, lens-1
-		var mid int	// 中间指针
+		var mid int // 中间指针
 		for left <= right {
 			mid = (left + right) / 2 // 计算中间位置
 			if nums[mid] > target {
@@ -58,7 +57,6 @@ func searchInsert(nums []int, target int) int {
 		// 上面两种情况
 		// 第一种情况: right > target 所以触发了mid - 1. 那么 left 应该 是小于target 所以可以直接
 
-
 		return left
 	}
 	return -1
@@ -68,5 +66,5 @@ func searchInsert(nums []int, target int) int {
 
 func TestSearchInsertPosition(t *testing.T) {
 	//fmt.Println(searchInsert([]int{1, 3, 5, 6}, 5) == 2)
-	fmt.Println(searchInsert([]int{1, 3, 5, 6}, 2), 2)
+	//fmt.Println(searchInsert([]int{1, 3, 5, 6}, 2), 2)
 }
