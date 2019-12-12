@@ -40,21 +40,29 @@ func rotate(nums []int, k int) {
 	// 输入: [1,2,3,4,5,6,7] 和 k = 3
 	//输出: [5,6,7,1,2,3,4]
 	//解释:
-	//向右旋转 1 步: [7,1,2,3,4,5,6]
-	//向右旋转 2 步: [6,7,1,2,3,4,5]
-	//向右旋转 3 步: [5,6,7,1,2,3,4]
-	var prevVal int
-	for i, l := 0, len(nums); i < k; i++ {
-		for j := 1; j <= l; j++ {
-			// 记录要被覆盖的值
-			if j == 1 {
-				prevVal = nums[j%l]
-				nums[j%l] = nums[(j-1)%l]
-			} else {
-				nums[j%l], prevVal = prevVal, nums[j%l]
-			}
+	//正常不移动   : [1,2,3,4,5,6,7]
+	//最终结果     : [5,6,7,1,2,3,4]
+	fmt.Println(nums)
+	fmt.Println()
+	fmt.Println()
+	fmt.Println()
+	l := len(nums)
+	if l > 0 {
+		k = k % l
+		// 判断合适的移动方向
+		var prevVal int
+		willReplaceIdx := k % l
+		prevVal = nums[willReplaceIdx]
+		nums[willReplaceIdx] = nums[0]
+		fmt.Println(nums)
+		for i := k; i < l + k ; i++ {
+			willReplaceIdx = ((i + 1) * k) % l
+			fmt.Println("将要被覆盖的索引", willReplaceIdx)
+			nums[willReplaceIdx], prevVal = prevVal, nums[willReplaceIdx]
+			fmt.Println(nums)
 		}
 	}
+
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
